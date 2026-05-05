@@ -15,7 +15,14 @@
     "format": "prettier --write --experimental-cli src/"
   },
   "dependencies": {
-    "vue": "^3.5.32"
+    "@formkit/core": "^2.0.0",
+    "@formkit/icons": "^2.0.0",
+    "@formkit/themes": "^2.0.0",
+    "@formkit/vue": "^2.0.0",
+    "nanoid": "^5.1.11",
+    "pinia": "^3.0.4",
+    "vue": "^3.5.32",
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@tsconfig/node24": "^24.0.4",
