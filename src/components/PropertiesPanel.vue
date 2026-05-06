@@ -75,11 +75,13 @@ const availableRules = [
 </script>
 
 <template>
-  <aside class="props">
-    <h3 class="props__title">Properties</h3>
+  <aside class="props" aria-label="Properties">
+    <div class="props__title">Properties</div>
 
-    <div v-if="!field" class="props__empty">
-      Select a field on the canvas to edit its properties.
+    <div v-if="!field" class="props__empty-wrap">
+      <div class="props__empty">
+        Select a field on the canvas to edit its properties.
+      </div>
     </div>
 
     <div v-else class="props__body">
@@ -195,28 +197,44 @@ const availableRules = [
 
 <style scoped>
 .props {
-  width: 320px;
-  padding: 16px;
-  background: #f8fafc;
-  border-left: 1px solid #e2e8f0;
-  overflow-y: auto;
+  width: 300px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--color-muted);
+  border-left: 1px solid var(--color-border);
 }
 .props__title {
-  margin: 0 0 12px;
-  font-size: 12px;
+  padding: 16px;
+  border-bottom: 1px solid var(--color-border-soft);
+  font-size: var(--text-xs);
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #64748b;
+  letter-spacing: 0.05em;
+  color: var(--color-muted-foreground);
+  background: color-mix(in srgb, var(--color-background) 50%, transparent);
+}
+.props__empty-wrap {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 32px 16px 16px;
 }
 .props__empty {
-  padding: 24px 12px;
-  color: #94a3b8;
-  font-size: 13px;
+  width: 100%;
+  padding: 24px;
   text-align: center;
-  background: #fff;
-  border: 1px dashed #cbd5e1;
-  border-radius: 8px;
+  background: var(--color-background);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  color: var(--color-muted-foreground);
+}
+.props__body {
+  padding: 16px;
+  overflow-y: auto;
 }
 .props__row {
   display: flex;
@@ -225,8 +243,8 @@ const availableRules = [
   margin-bottom: 10px;
 }
 .props__row label {
-  font-size: 11px;
-  color: #64748b;
+  font-size: var(--text-xs);
+  color: var(--color-muted-foreground);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -237,20 +255,29 @@ const availableRules = [
 .props__rule input,
 .props__rule select {
   padding: 6px 8px;
-  font-size: 13px;
-  border: 1px solid #cbd5e1;
-  border-radius: 4px;
-  background: #fff;
+  font-size: var(--text-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-background);
+  color: var(--color-foreground);
   min-width: 0;
 }
+.props__row input:focus,
+.props__row select:focus,
+.props__option input:focus,
+.props__rule input:focus,
+.props__rule select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
 .props__row input:disabled {
-  background: #f1f5f9;
-  color: #64748b;
+  background: var(--color-muted);
+  color: var(--color-muted-foreground);
 }
 .props__section {
   margin-top: 16px;
   padding-top: 12px;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid var(--color-border-soft);
 }
 .props__section-header {
   display: flex;
@@ -260,20 +287,22 @@ const availableRules = [
 }
 .props__section-header h4 {
   margin: 0;
-  font-size: 12px;
-  color: #334155;
+  font-size: var(--text-sm);
+  color: var(--color-foreground);
+  font-weight: 600;
 }
 .props__add {
-  font-size: 12px;
-  padding: 3px 8px;
-  background: #3b82f6;
-  color: #fff;
+  font-size: var(--text-xs);
+  padding: 4px 10px;
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
   border: none;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
+  font-weight: 500;
 }
 .props__add:hover {
-  background: #2563eb;
+  filter: brightness(1.05);
 }
 .props__option,
 .props__rule {
@@ -291,15 +320,23 @@ const availableRules = [
 }
 .props__remove {
   width: 28px;
-  background: #fff;
-  color: #dc2626;
-  border: 1px solid #cbd5e1;
-  border-radius: 4px;
+  background: var(--color-background);
+  color: var(--color-danger-hover);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  font-size: 12px;
+  font-size: var(--text-xs);
 }
 .props__remove:hover {
-  background: #fee2e2;
-  border-color: #dc2626;
+  background: var(--color-danger);
+  color: var(--color-danger-foreground);
+  border-color: var(--color-danger);
+}
+
+@media (max-width: 1024px) {
+  .props {
+    width: 100%;
+    height: auto;
+  }
 }
 </style>

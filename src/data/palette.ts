@@ -7,7 +7,7 @@ export const paletteItems: PaletteItem[] = [
   {
     kind: 'text',
     title: 'Text',
-    icon: 'T',
+    icon: 'type',
     createDefaults: () => ({
       $formkit: 'text',
       name: nextName('text'),
@@ -20,7 +20,7 @@ export const paletteItems: PaletteItem[] = [
   {
     kind: 'email',
     title: 'Email',
-    icon: '@',
+    icon: 'at-sign',
     createDefaults: () => ({
       $formkit: 'email',
       name: nextName('email'),
@@ -33,7 +33,7 @@ export const paletteItems: PaletteItem[] = [
   {
     kind: 'password',
     title: 'Password',
-    icon: '*',
+    icon: 'asterisk',
     createDefaults: () => ({
       $formkit: 'password',
       name: nextName('password'),
@@ -45,7 +45,7 @@ export const paletteItems: PaletteItem[] = [
   {
     kind: 'number',
     title: 'Number',
-    icon: '#',
+    icon: 'hash',
     createDefaults: () => ({
       $formkit: 'number',
       name: nextName('number'),
@@ -57,7 +57,7 @@ export const paletteItems: PaletteItem[] = [
   {
     kind: 'tel',
     title: 'Phone',
-    icon: '☎',
+    icon: 'phone',
     createDefaults: () => ({
       $formkit: 'tel',
       name: nextName('tel'),
@@ -70,7 +70,7 @@ export const paletteItems: PaletteItem[] = [
   {
     kind: 'url',
     title: 'URL',
-    icon: '🔗',
+    icon: 'link',
     createDefaults: () => ({
       $formkit: 'url',
       name: nextName('url'),
@@ -83,7 +83,7 @@ export const paletteItems: PaletteItem[] = [
   {
     kind: 'textarea',
     title: 'Textarea',
-    icon: '¶',
+    icon: 'align-left',
     createDefaults: () => ({
       $formkit: 'textarea',
       name: nextName('textarea'),
@@ -97,7 +97,7 @@ export const paletteItems: PaletteItem[] = [
   {
     kind: 'select',
     title: 'Select',
-    icon: '▼',
+    icon: 'chevron-down',
     createDefaults: () => ({
       $formkit: 'select',
       name: nextName('select'),
@@ -114,7 +114,7 @@ export const paletteItems: PaletteItem[] = [
   {
     kind: 'checkbox',
     title: 'Checkbox',
-    icon: '☑',
+    icon: 'check-square',
     createDefaults: () => ({
       $formkit: 'checkbox',
       name: nextName('checkbox'),
@@ -126,7 +126,7 @@ export const paletteItems: PaletteItem[] = [
   {
     kind: 'radio',
     title: 'Radio',
-    icon: '◉',
+    icon: 'circle-dot',
     createDefaults: () => ({
       $formkit: 'radio',
       name: nextName('radio'),
@@ -142,7 +142,7 @@ export const paletteItems: PaletteItem[] = [
   {
     kind: 'date',
     title: 'Date',
-    icon: '📅',
+    icon: 'calendar',
     createDefaults: () => ({
       $formkit: 'date',
       name: nextName('date'),

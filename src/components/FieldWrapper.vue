@@ -4,6 +4,7 @@ import { FormKit } from '@formkit/vue'
 import type { FieldNode } from '@/types/builder'
 import { useBuilderStore } from '@/stores/builder'
 import { rulesToString } from '@/composables/useCompiledSchema'
+import Icon from './Icon.vue'
 
 const props = defineProps<{ node: FieldNode }>()
 const store = useBuilderStore()
@@ -45,8 +46,12 @@ function remove(e: MouseEvent) {
     />
 
     <div class="fw__toolbar">
-      <span class="fw__handle drag-handle" title="Drag to reorder">⋮⋮</span>
-      <button class="fw__btn" @click="remove" title="Delete">✕</button>
+      <span class="fw__handle drag-handle" title="Drag to reorder">
+        <Icon name="grip-vertical" :size="14" />
+      </span>
+      <button class="fw__btn" type="button" @click="remove" title="Delete">
+        <Icon name="x" :size="14" />
+      </button>
     </div>
   </div>
 </template>
@@ -56,22 +61,22 @@ function remove(e: MouseEvent) {
   position: relative;
   padding: 10px 12px;
   border: 1px dashed transparent;
-  border-radius: 8px;
-  transition: border-color 0.15s, background 0.15s;
+  border-radius: var(--radius-lg);
+  transition: border-color 150ms, background 150ms;
 }
 .fw:hover {
-  border-color: #cbd5e1;
-  background: #f8fafc;
+  border-color: var(--color-border);
+  background: color-mix(in srgb, var(--color-muted) 60%, transparent);
 }
 .fw--active {
-  border-color: #3b82f6 !important;
-  background: #eff6ff !important;
+  border-color: var(--color-primary) !important;
+  background: var(--color-primary-soft) !important;
 }
 .fw__shield {
   position: absolute;
   inset: 0;
   z-index: 2;
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
 }
 .fw__toolbar {
   position: absolute;
@@ -91,12 +96,11 @@ function remove(e: MouseEvent) {
   justify-content: center;
   width: 24px;
   height: 24px;
-  background: #fff;
-  border: 1px solid #cbd5e1;
-  border-radius: 4px;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
   cursor: grab;
-  color: #64748b;
-  font-size: 12px;
+  color: var(--color-muted-foreground);
   user-select: none;
 }
 .fw__handle:active {
@@ -105,18 +109,18 @@ function remove(e: MouseEvent) {
 .fw__btn {
   width: 24px;
   height: 24px;
-  background: #fff;
-  border: 1px solid #cbd5e1;
-  border-radius: 4px;
-  color: #dc2626;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-danger-hover);
   cursor: pointer;
-  font-size: 12px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 .fw__btn:hover {
-  background: #fee2e2;
-  border-color: #dc2626;
+  background: var(--color-danger);
+  color: var(--color-danger-foreground);
+  border-color: var(--color-danger);
 }
 </style>

@@ -1,5 +1,58 @@
 @import '@formkit/themes/genesis';
 
+:root,
+:root[data-theme='dark'] {
+  --color-background: #09090b;
+  --color-foreground: #fafafa;
+  --color-border: #27272a;
+  --color-border-soft: rgba(39, 39, 42, 0.6);
+  --color-muted: #18181b;
+  --color-muted-foreground: #a1a1aa;
+  --color-primary: #10b981;
+  --color-primary-foreground: #022c22;
+  --color-primary-soft: rgba(16, 185, 129, 0.15);
+  --color-secondary: #27272a;
+  --color-secondary-foreground: #fafafa;
+  --color-danger: #b91c1c;
+  --color-danger-hover: #dc2626;
+  --color-danger-foreground: #ffffff;
+  --color-surface-1: #09090b;
+  --color-surface-2: #18181b;
+  --color-surface-3: #27272a;
+  --color-surface-input: #0f0f10;
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px -1px rgba(0, 0, 0, 0.4);
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --text-xs: 11px;
+  --text-sm: 13px;
+  --text-md: 14px;
+  --text-lg: 16px;
+  --text-xl: 18px;
+}
+
+:root[data-theme='light'] {
+  --color-background: #ffffff;
+  --color-foreground: #111827;
+  --color-border: #e5e7eb;
+  --color-border-soft: rgba(229, 231, 235, 0.6);
+  --color-muted: #f9fafb;
+  --color-muted-foreground: #6b7280;
+  --color-primary: #10b981;
+  --color-primary-foreground: #022c22;
+  --color-primary-soft: rgba(16, 185, 129, 0.12);
+  --color-secondary: #eff6ff;
+  --color-secondary-foreground: #1d4ed8;
+  --color-danger: #ef4444;
+  --color-danger-hover: #dc2626;
+  --color-danger-foreground: #ffffff;
+  --color-surface-1: #ffffff;
+  --color-surface-2: #f9fafb;
+  --color-surface-3: #f3f4f6;
+  --color-surface-input: #ffffff;
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -8,8 +61,25 @@ body,
 #app {
   margin: 0;
   height: 100%;
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    sans-serif;
   font-size: 14px;
-  color: #0f172a;
-  background: #f1f5f9;
+  color: var(--color-foreground);
+  background: var(--color-background);
+}
+
+button {
+  font-family: inherit;
+}
+
+/* FormKit overrides for dark theme */
+:root[data-theme='dark'] .formkit-outer {
+  --fk-color-text: var(--color-foreground);
+  --fk-color-label: var(--color-foreground);
+  --fk-color-help: var(--color-muted-foreground);
+  --fk-bg-input: var(--color-surface-input);
+  --fk-color-input: var(--color-foreground);
+  --fk-border-color: var(--color-border);
+  --fk-color-placeholder: var(--color-muted-foreground);
 }

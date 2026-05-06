@@ -28,29 +28,34 @@ const fields = {
 <template>
   <section class="canvas" @click="deselect">
     <header class="canvas__header">
-      <h3>Canvas</h3>
+      <span class="canvas__title">Canvas</span>
       <span class="canvas__counter">{{ store.schema.fields.length }} field(s)</span>
     </header>
 
-    <draggable
-      :model-value="fields.get()"
-      @update:model-value="fields.set($event)"
-      :group="{ name: 'form', pull: false, put: true }"
-      item-key="$id"
-      handle=".drag-handle"
-      ghost-class="canvas__ghost"
-      animation="160"
-      class="canvas__list"
-      @add="onAdd"
-    >
-      <template #item="{ element }">
-        <FieldWrapper :node="element" />
-      </template>
-    </draggable>
+    <div class="canvas__body">
+      <draggable
+        :model-value="fields.get()"
+        @update:model-value="fields.set($event)"
+        :group="{ name: 'form', pull: false, put: true }"
+        item-key="$id"
+        handle=".drag-handle"
+        ghost-class="canvas__ghost"
+        animation="160"
+        class="canvas__list"
+        :class="{ 'canvas__list--empty': !store.schema.fields.length }"
+        @add="onAdd"
+      >
+        <template #item="{ element }">
+          <FieldWrapper :node="element" />
+        </template>
+      </draggable>
 
-    <p v-if="!store.schema.fields.length" class="canvas__empty">
-      Drag fields here from the left panel
-    </p>
+      <p v-if="!store.schema.fields.length" class="canvas__empty">
+        Drag fields
+        <span class="canvas__empty-chip">here</span>
+        from the left panel
+      </p>
+    </div>
   </section>
 </template>
 
@@ -59,24 +64,32 @@ const fields = {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 16px 20px;
-  overflow-y: auto;
-  background: #fff;
+  min-height: 0;
+  background: var(--color-background);
 }
 .canvas__header {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
+  padding: 16px;
+  border-bottom: 1px solid var(--color-border-soft);
+  background: var(--color-background);
 }
-.canvas__header h3 {
-  margin: 0;
-  font-size: 14px;
-  color: #334155;
+.canvas__title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-foreground);
 }
 .canvas__counter {
-  font-size: 12px;
-  color: #94a3b8;
+  font-size: var(--text-xs);
+  color: var(--color-muted-foreground);
+}
+.canvas__body {
+  flex: 1;
+  position: relative;
+  padding: 16px;
+  overflow-y: auto;
+  background: var(--color-background);
 }
 .canvas__list {
   min-height: 120px;
@@ -84,20 +97,36 @@ const fields = {
   flex-direction: column;
   gap: 4px;
   padding: 8px;
-  border: 2px dashed #e2e8f0;
-  border-radius: 10px;
-  background: #fafafa;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--color-muted) 20%, transparent);
+}
+.canvas__list--empty {
+  align-items: center;
+  justify-content: center;
 }
 .canvas__ghost {
-  opacity: 0.5;
-  background: #dbeafe;
-  border: 2px dashed #3b82f6 !important;
+  opacity: 0.6;
+  background: var(--color-primary-soft);
+  border: 1px dashed var(--color-primary) !important;
 }
 .canvas__empty {
-  margin: 12px 0 0;
-  text-align: center;
-  color: #94a3b8;
-  font-size: 13px;
+  position: absolute;
+  inset: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-muted-foreground);
   pointer-events: none;
+}
+.canvas__empty-chip {
+  background: var(--color-muted);
+  border: 1px solid var(--color-border);
+  color: var(--color-foreground);
+  padding: 0 4px;
+  border-radius: var(--radius-sm);
 }
 </style>
